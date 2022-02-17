@@ -1,0 +1,16 @@
+{
+  "name": "service-delivery",
+  "version": "1.0.0",
+  "description": "Microserviço de Logística/Entrega",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "correios.js": "^3.0.0",
+    "express": "^4.17.3"
+  }
+}
