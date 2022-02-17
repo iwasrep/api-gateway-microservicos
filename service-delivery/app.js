@@ -1,20 +1,31 @@
 const express = require('express')
-const correios = require('correios')
+const axios = require('axios')
 
 const app = express()
 
-app.get('/track', function (req, res) {
+app.post('/track', function (req, res) {
   const { code } = req.query
 
-  correios.track(code).then((response) => {
+  const config = {
+    method: 'post',
+    url: 'https://correios.contrateumdev.com.br/api/rastreio',
+    headers: {},
+    data: {
+      "code": code,
+      "type": "LS"
+    }
+  };
+
+  axios(config).then((response) => {
     res.status(200)
     res.send(response)
   }).catch((err) => {
     res.status(500)
-    res.send(error)
+    res.send('Deu ruim!!')
+    console.log
   })
 })
 
-app.listen(3003, function() {
-  console.log('Microserviço DELIVERY: porta 3003')
+app.listen(3002, function () {
+  console.log('Microserviço DELIVERY: porta 3002')
 })

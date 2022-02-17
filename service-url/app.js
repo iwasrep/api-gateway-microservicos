@@ -1,20 +1,25 @@
 const express = require('express')
-const kurzer = require('kurzer-url')
+const Kurzer = require('kurzer-url')
 
 const app = express()
 
-app.get('/short', function(req, res){
+const kurzer = new Kurzer()
+
+app.get('/short', function (req, res) {
   const { url } = req.query;
 
-  kurzer(url).then((response) => {
-    res.status(200)
-    res.send(response)
-  }).catch((error) => {
-    res.status(500)
-    res.send(error)
-  })
+  (async () => {
+    try {
+      const { shorturl } = await kurzer.short(url);
+      res.status(200)
+      res.send(`<h1>Link: <a href="${shorturl}" target="_blank">${shorturl}</a></h1>`)
+
+    } catch (error) {
+      console.log(error)
+    }
+  })();
 })
 
-app.listen(3002, function(){
-  console.log('Microsserviço SHORT_URL: porta 3002')
+app.listen(3001, function () {
+  console.log('Microserviço SHORT_URL: porta 3001')
 })

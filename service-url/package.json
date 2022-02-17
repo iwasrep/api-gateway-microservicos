@@ -4,6 +4,7 @@
   "description": "Micro-Serviço de Encurtamento de URL (Testes)",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
